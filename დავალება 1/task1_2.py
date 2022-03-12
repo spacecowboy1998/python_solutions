@@ -5,6 +5,9 @@ class Employee:
         self.age = age
         self.salary = salary
 
+    def __lt__(self, other):
+        return self.age > other.age
+
     def print_info(self):
         print(f"დასაქამებულის მონაცებემი სახელი:{self.name}, გვარი:{self.surname},"
               f" შემოსავალი:{self.salary} ლარი , ასაკი:{self.age} წელი")
@@ -26,7 +29,10 @@ for person in my_list:
     obj_list.append(employee)
 
 min_salary_person = min(obj_list, key=lambda x: x.salary)
-max_age_person = max(obj_list, key=lambda x: x.age)
+# max_age_person = max(obj_list, key=lambda x: x.age)
+# key s გამოყენების გარეშე ,შევადარეთ ობიექტის ატრიბუტები ერთმანეთს , პასუხისმგებელი __lt__
+max_age_person = max(obj_list)
+
 
 min_salary_person.print_info()
 max_age_person.print_info()
