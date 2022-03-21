@@ -14,6 +14,6 @@ class MyList:
 test_list1 = MyList([1, 2, 3])
 test_list2 = MyList([5, 6, 7])
 
-print(test_list1 * 2)
+print(test_list1 * 3)
 print(test_list1 + test_list2)
 print(str(test_list1))
