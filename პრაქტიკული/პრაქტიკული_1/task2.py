@@ -48,7 +48,6 @@ student1 = Student()
 
 print(student1.tests_taken)
 student1.take_test(paper1, ["1A", "2C", "3D", "4A", "5A"])
-print(student1.tests_taken)
 
 student1.take_test(paper2, ["1C", "2D", "3C", "4C", "5A", "6D"])
 print(student1.tests_taken)
