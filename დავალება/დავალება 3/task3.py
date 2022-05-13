@@ -47,7 +47,7 @@ print("ბაზაში არსებული პროვინციე�
       cursor.fetchall())
 
 
-select_query = '''SELECT population FROM density WHERE land_area > 200000'''
+select_query = 'SELECT population FROM density WHERE land_area > 200000'
 cursor.execute(select_query)
 print("ბაზაში არსებულ პროვინციათა მოსახლეობა, რომლის ფართბი აღემატება 200000 კმ^2" + "\n", cursor.fetchall())
 

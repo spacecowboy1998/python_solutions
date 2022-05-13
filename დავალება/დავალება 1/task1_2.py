@@ -13,7 +13,7 @@ class Employee:
               f" შემოსავალი:{self.salary} ლარი , ასაკი:{self.age} წელი")
 
 
-my_file = open("dataset1.csv", "r", encoding="utf8")
+my_file = open("../../../pythonProject/dataset1.csv", "r", encoding="utf8")
 my_list = my_file.readlines()
 my_file.close()
 obj_list = []

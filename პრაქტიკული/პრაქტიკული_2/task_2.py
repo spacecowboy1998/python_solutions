@@ -22,4 +22,3 @@ cursor.execute(insert_query, dog3.get_values())
 cursor.execute(insert_query, dog4.get_values())
 cursor.execute(insert_query, dog5.get_values())
 connection.commit()
-
