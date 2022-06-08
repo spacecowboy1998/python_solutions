@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/create.css') }}">
+
+</head>
+<body>
+<form action="/" method="POST" >
+  <div class="container">
+  <center>  <h1> Student Registeration Form</h1> </center>
+{% from "_formhelpers.html" import render_field %}
+  <dl>
+    {{ render_field(form.username) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.first_name) }}
+    {{ render_field(form.last_name) }}
+    {{ render_field(form.university) }}
+      {{  render_field(form.course)  }}
+  </dl>
+
+      <button type="submit" class="register_button">Register</button>
+</div>
+</form>
+</body>
+</html>
