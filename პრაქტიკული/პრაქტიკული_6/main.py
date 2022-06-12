@@ -1,12 +1,13 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+import time
+
+from flask import Flask, render_template, request, redirect, url_for, g
 from flask_sqlalchemy import SQLAlchemy
-from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from forms import RegistrationForm
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
-upload_dir = os.path.join(base_dir, 'uploads')
+upload_dir = os.path.join(base_dir, 'static/img')
 if not os.path.exists(upload_dir):
     os.makedirs(upload_dir)
 
@@ -30,6 +31,19 @@ class Student(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+
+@app.before_request
+def handle_request_start():
+    g.started = time.time()
+
+
+@app.after_request
+def handle_request_end(response):
+    now = time.time()
+    passed_time = now - g.started
+    print("Request processing took - ", passed_time)
+    return response
 
 
 @app.route('/user/add', methods=['GET'])
@@ -60,7 +74,7 @@ def user_crud(user_id=None):
         if form.validate():
             avatar = request.files['avatar']
             if avatar:
-                avatar.save(f'{upload_dir}/{avatar.filename}')
+                avatar.save(f'static/img/{avatar.filename}')
                 student = Student(
                     first_name=form.first_name.data,
                     last_name=form.last_name.data,
