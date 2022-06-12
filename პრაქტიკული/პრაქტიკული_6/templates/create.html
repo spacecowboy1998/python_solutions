@@ -6,7 +6,7 @@
 
 </head>
 <body>
-<form action="/" method="POST" >
+<form action="/" method="POST" enctype="multipart/form-data">
   <div class="container">
   <center>  <h1> Student Registeration Form</h1> </center>
 {% from "_formhelpers.html" import render_field %}
@@ -18,6 +18,11 @@
     {{ render_field(form.university) }}
       {{  render_field(form.course)  }}
   </dl>
+ <div>
+   <label for="avatar">Choose file to upload</label>
+   <input type="file" id="avatar" name="avatar" multiple>
+ </div>
+ <div>
 
       <button type="submit" class="register_button">Register</button>
 </div>

@@ -26,6 +26,7 @@ class Student(db.Model):
     email = db.Column(db.String(40), unique=True, nullable=False)
     course = db.Column(db.String(32), nullable=False)
     university = db.Column(db.String(32), nullable=False)
+    avatar = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -57,15 +58,19 @@ def user_crud(user_id=None):
     if method == 'POST':
         form = RegistrationForm(request.form)
         if form.validate():
-            student = Student(
-                first_name=form.first_name.data,
-                last_name=form.last_name.data,
-                email=form.email.data,
-                username=form.username.data,
-                university=form.university.data,
-                course=form.course.data
-            )
-            db.session.add(student)
+            avatar = request.files['avatar']
+            if avatar:
+                avatar.save(f'{upload_dir}/{avatar.filename}')
+                student = Student(
+                    first_name=form.first_name.data,
+                    last_name=form.last_name.data,
+                    email=form.email.data,
+                    username=form.username.data,
+                    university=form.university.data,
+                    course=form.course.data,
+                    avatar=avatar.filename
+                )
+                db.session.add(student)
             return redirect(url_for('user_crud'))
         return render_template("create.html", form=form)
 
